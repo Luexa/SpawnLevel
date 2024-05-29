@@ -24,7 +24,7 @@ spawnlevel_err_capital_ban: "&cYou cannot spawn to %s as its capital has outlawe
 spawnlevel_err_teleport_denied_spawnlevel_resident: "&cYou cannot spawn to %s as it only allows residents to spawn there."
 spawnlevel_err_teleport_denied_spawnlevel_nation: "&cYou cannot spawn to %s as it only allows nation members to spawn there."
 spawnlevel_err_teleport_denied_spawnlevel_ally: "&cYou cannot spawn to %s as it only allows nation members and allies to spawn there."
-spawnlevel_err_allowspawn_exists: "&c%s is already in the spawn override."
+spawnlevel_err_allowspawn_exists: "&c%s is already in the spawn override list."
 spawnlevel_err_allowspawn_doesnt_exist: "&c%s is not in the spawn override list."
 spawnlevel_usage_allowspawn_add_town: "Adds a player to the town's spawn level override list."
 spawnlevel_usage_allowspawn_add_nation: "Adds a player to the nation's spawn level override list."

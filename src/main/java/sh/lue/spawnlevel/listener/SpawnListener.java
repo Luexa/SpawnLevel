@@ -23,6 +23,12 @@ public final class SpawnListener implements Listener {
         final Resident resident = TownyAPI.getInstance().getResident(player);
 
         final Town town = event.getToTown();
+        if (town == null) {
+            event.setCancelMessage(Translatable.of("msg_err_town_has_not_set_a_spawn_location").forLocale(player));
+            event.setCancelled(true);
+            return;
+        }
+
         final Town resTown = resident == null ? null : resident.getTownOrNull();
 
         final String spawnLevel = MetadataManager.getSpawnLevel(town);
@@ -51,6 +57,12 @@ public final class SpawnListener implements Listener {
         final Resident resident = TownyAPI.getInstance().getResident(player);
 
         final Nation nation = event.getToNation();
+        if (nation == null) {
+            event.setCancelMessage(Translatable.of("msg_err_nation_has_not_set_a_spawn_location").forLocale(player));
+            event.setCancelled(true);
+            return;
+        }
+
         final Town nationCapital = nation.getCapital();
 
         if (resident != null && nationCapital != null && nationCapital.hasOutlaw(resident) && !TownyUniverse.getInstance().getPermissionSource().testPermission(player, "spawnlevel.bypass_capital_ban")) {
