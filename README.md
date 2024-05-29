@@ -10,7 +10,7 @@ Plugin for Towny servers that adds more controls to `/t spawn` and `/n spawn`.
 
 ## Spawn Levels
 
-Towns can configure their spawn level using the command `/t set spawnlevel <level>`, whereas nations can configure their spawn level using the command `/n set spawnlevel <level>`.
+Towns can configure their spawn level using the command `/t spawnlevel <level>`, whereas nations can configure their spawn level using the command `/n spawnlevel <level>`.
 
 | Spawn Level | Description |
 | ----------- | ----------- |
@@ -43,3 +43,20 @@ The available commands are:
 ## Capital Outlaw Ban
 
 Nation spawns will be unavailable to outlaws of the nation's capital unless given the permission node `spawnlevel.bypass_capital_ban`.
+
+## TownyAdmin
+
+TownyAdmin commands are available and mirror the commands used by normal players.
+
+- `/ta town <town> spawnlevel <level>`
+- `/ta town <town> allowspawn add <player>`
+- `/ta town <town> allowspawn remove <player>`
+- `/ta nation <nation> spawnlevel <level>`
+- `/ta nation <nation> allowspawn add <player>`
+- `/ta nation <nation> allowspawn remove <player>`
+
+## Copyright
+
+Licensed under [GNU General Public License v3.0](LICENSE).
+
+Contains code derived from [Quarters](https://github.com/jwkerr/Quarters), which uses the same license.

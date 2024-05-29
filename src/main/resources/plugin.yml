@@ -1,0 +1,65 @@
+name: SpawnLevel
+version: "${project.version}"
+main: sh.lue.spawnlevel.SpawnLevel
+api-version: "1.20"
+dependencies:
+  - name: Towny
+    required: true
+authors: [Lue]
+description: Allow towns and nations to more precisely control who is allowed to use their spawns
+website: https://github.com/Luexa/SpawnLevel
+folia-supported: true
+
+permissions:
+  spawnlevel.command.town.spawnlevel:
+    description: User can set the spawn level of their town.
+    default: false
+  spawnlevel.command.town.allowspawn:
+    description: User can modify the spawn bypass list of their town.
+    default: false
+
+  spawnlevel.command.nation.spawnlevel:
+    description: User can set the spawn level of their nation.
+    default: false
+  spawnlevel.command.nation.allowspawn:
+    description: User can modify the spawn bypass list of their nation.
+    default: false
+
+  spawnlevel.outlaw.bypass_capital_ban:
+    description: User can teleport to nations even if outlawed from the capital.
+    default: false
+
+  spawnlevel.command.admin.*:
+    description: User can access spawnlevel and allowspawn admin commands.
+    default: false
+    children:
+      spawnlevel.command.admin.town.*: true
+      spawnlevel.command.admin.nation.*: true
+
+  spawnlevel.command.admin.town.*:
+    description: User can access town spawnlevel and allowspawn admin commands.
+    default: false
+    children:
+      spawnlevel.command.admin.town.spawnlevel: true
+      spawnlevel.command.admin.town.allowspawn: true
+
+  spawnlevel.command.admin.nation.*:
+    description: User can access nation spawnlevel and allowspawn admin commands.
+    default: false
+    children:
+      spawnlevel.command.admin.nation.spawnlevel: true
+      spawnlevel.command.admin.nation.allowspawn: true
+
+  spawnlevel.command.admin.town.spawnlevel:
+    description: User can set the spawn level of any town.
+    default: false
+  spawnlevel.command.admin.town.allowspawn:
+    description: User can modify the spawn bypass list of any town.
+    default: false
+
+  spawnlevel.command.admin.nation.spawnlevel:
+    description: User can set the spawn level of any nation.
+    default: false
+  spawnlevel.command.admin.nation.allowspawn:
+    description: User can modify the spawn bypass list of any nation.
+    default: false
