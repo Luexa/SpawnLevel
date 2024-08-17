@@ -25,6 +25,7 @@ public final class MetadataManager {
     }
 
     public static void setSpawnLevel(Government object, String spawnLevel, boolean save) {
+        object.setPublic(true);
         if (object.hasMeta(SPAWNLEVEL_DF)) {
             final CustomDataField<?> cdf = object.getMetadata(SPAWNLEVEL_DF);
             if (cdf instanceof StringDataField sdf) {

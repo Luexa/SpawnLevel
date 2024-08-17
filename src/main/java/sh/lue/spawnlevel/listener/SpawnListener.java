@@ -8,6 +8,7 @@ import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Translatable;
 import com.palmergames.bukkit.towny.event.TownSpawnEvent;
 import com.palmergames.bukkit.towny.event.NationSpawnEvent;
+import com.palmergames.util.StringMgmt;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,20 +33,28 @@ public final class SpawnListener implements Listener {
         final Town resTown = resident == null ? null : resident.getTownOrNull();
 
         final String spawnLevel = MetadataManager.getSpawnLevel(town);
-        if (spawnLevel.equals("outsider")) return;
         if (Objects.equals(town, resTown)) return;
+
+        final Nation nation = town.getNationOrNull();
+        final Town nationCapital = nation == null ? null : nation.getCapital();
+        if (resident != null && nationCapital != null && nationCapital.hasOutlaw(resident) && !TownyUniverse.getInstance().getPermissionSource().testPermission(player, "spawnlevel.bypass_capital_ban")) {
+            event.setCancelMessage(Translatable.of("spawnlevel_err_capital_of_nation_ban", StringMgmt.remUnderscore(town.getName())).forLocale(player));
+            event.setCancelled(true);
+            return;
+        }
+
+        if (Objects.equals(spawnLevel, "outsider")) return;
         if (MetadataManager.inAllowedSpawnList(town, player.getUniqueId())) return;
         if (resident != null && town.hasTrustedResident(resident)) return;
 
-        final Nation nation = town.getNationOrNull();
         final Nation resNation = resTown == null ? null : resTown.getNationOrNull();
 
-        if (!spawnLevel.equals("resident") && nation != null && resNation != null) {
-            if (spawnLevel.equals("ally") && nation.isAlliedWith(resNation)) return;
+        if (!Objects.equals(spawnLevel, "resident") && nation != null && resNation != null) {
+            if (Objects.equals(spawnLevel, "ally") && nation.isAlliedWith(resNation)) return;
             if (nation.equals(resNation)) return;
         }
 
-        event.setCancelMessage(Translatable.of("spawnlevel_err_teleport_denied_spawnlevel_" + spawnLevel, town.getName()).forLocale(player));
+        event.setCancelMessage(Translatable.of("spawnlevel_err_teleport_denied_spawnlevel_" + spawnLevel, StringMgmt.remUnderscore(town.getName())).forLocale(player));
         event.setCancelled(true);
     }
 
@@ -66,17 +75,17 @@ public final class SpawnListener implements Listener {
         final Town nationCapital = nation.getCapital();
 
         if (resident != null && nationCapital != null && nationCapital.hasOutlaw(resident) && !TownyUniverse.getInstance().getPermissionSource().testPermission(player, "spawnlevel.bypass_capital_ban")) {
-            event.setCancelMessage(Translatable.of("spawnlevel_err_capital_ban", nation.getName()).forLocale(player));
+            event.setCancelMessage(Translatable.of("spawnlevel_err_capital_ban", StringMgmt.remUnderscore(nation.getName())).forLocale(player));
             event.setCancelled(true);
             return;
         }
 
         final String spawnLevel = MetadataManager.getSpawnLevel(nation);
-        if (spawnLevel.equals("outsider")) return;
+        if (Objects.equals(spawnLevel, "outsider")) return;
         if (MetadataManager.inAllowedSpawnList(nation, player.getUniqueId())) return;
         if (resident != null && resident.hasNation()) {
             final Nation resNation = resident.getTownOrNull().getNationOrNull();
-            if (spawnLevel.equals("ally") && nation.isAlliedWith(resNation)) return;
+            if (Objects.equals(spawnLevel, "ally") && nation.isAlliedWith(resNation)) return;
             if (nation.equals(resNation)) return;
         }
 

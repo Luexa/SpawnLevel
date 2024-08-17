@@ -5,6 +5,7 @@ import com.palmergames.bukkit.towny.TownyCommandAddonAPI;
 import com.palmergames.bukkit.towny.TownyCommandAddonAPI.CommandType;
 import com.palmergames.bukkit.towny.object.TranslationLoader;
 import com.palmergames.bukkit.towny.object.metadata.MetadataLoader;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.concurrent.CompletableFuture;
 import sh.lue.spawnlevel.command.SpawnLevelCommand;
@@ -14,11 +15,27 @@ import sh.lue.spawnlevel.listener.TogglePublicListener;
 import sh.lue.spawnlevel.listener.SpawnListener;
 import sh.lue.spawnlevel.listener.StatusScreenListener;
 import sh.lue.spawnlevel.listener.NewTownNationListener;
+import sh.lue.spawnlevel.listener.TranslationLoadListener;
+import sh.lue.spawnlevel.listener.NewHourListener;
+import sh.lue.spawnlevel.listener.NationOutlawEnforcementListener;
 import sh.lue.spawnlevel.object.AllowSpawnList;
 import sh.lue.spawnlevel.object.AllowSpawnListDeserializer;
 import sh.lue.spawnlevel.tasks.FixupMetadataTask;
 
 public final class SpawnLevel extends JavaPlugin {
+    private static Plugin plugin;
+
+    public SpawnLevel() {
+        plugin = this;
+    }
+
+    public static Plugin getPlugin() {
+        if (plugin == null) {
+            throw new IllegalStateException("SpawnLevel getPlugin() called too early!");
+        }
+        return plugin;
+    }
+
     @Override
     public void onEnable() {
         final var translationLoader = new TranslationLoader(this);
@@ -53,6 +70,9 @@ public final class SpawnLevel extends JavaPlugin {
         pluginManager.registerEvents(new SpawnListener(), this);
         pluginManager.registerEvents(new StatusScreenListener(), this);
         pluginManager.registerEvents(new NewTownNationListener(), this);
+        pluginManager.registerEvents(new TranslationLoadListener(), this);
+        pluginManager.registerEvents(new NewHourListener(), this);
+        pluginManager.registerEvents(new NationOutlawEnforcementListener(), this);
     }
 
     private void scheduleTasks() {

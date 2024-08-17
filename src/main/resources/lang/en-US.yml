@@ -21,6 +21,7 @@ spawnlevel_usage_spawnlevel_outsider: "Allow anyone to spawn unless outlawed or 
 spawnlevel_err_use_town_spawnlevel: "&cCannot toggle the town's public status. Use '/town spawnlevel' to configure the town's spawn level instead."
 spawnlevel_err_use_nation_spawnlevel: "&cCannot toggle the nation's public status. Use '/nation spawnlevel' to configure the nation's spawn level instead."
 spawnlevel_err_capital_ban: "&cYou cannot spawn to %s as its capital has outlawed you."
+spawnlevel_err_capital_of_nation_ban: "&cYou cannot spawn to %s as the capital of its nation has outlawed you."
 spawnlevel_err_teleport_denied_spawnlevel_resident: "&cYou cannot spawn to %s as it only allows residents to spawn there."
 spawnlevel_err_teleport_denied_spawnlevel_nation: "&cYou cannot spawn to %s as it only allows nation members to spawn there."
 spawnlevel_err_teleport_denied_spawnlevel_ally: "&cYou cannot spawn to %s as it only allows nation members and allies to spawn there."

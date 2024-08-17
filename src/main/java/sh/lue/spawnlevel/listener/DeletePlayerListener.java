@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import sh.lue.spawnlevel.manager.MetadataManager;
 
 public final class DeletePlayerListener implements Listener {
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onDeletePlayer(DeletePlayerEvent event) {
         final var uuid = event.getPlayerUUID();
 

@@ -2,13 +2,10 @@ name: SpawnLevel
 version: "${project.version}"
 main: sh.lue.spawnlevel.SpawnLevel
 api-version: "1.20"
-dependencies:
-  - name: Towny
-    required: true
+depend: [Towny]
 authors: [Lue]
 description: Allow towns and nations to more precisely control who is allowed to use their spawns
 website: https://github.com/Luexa/SpawnLevel
-folia-supported: true
 
 permissions:
   spawnlevel.command.town.spawnlevel:

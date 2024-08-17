@@ -26,12 +26,12 @@ import java.util.stream.Collectors;
 import sh.lue.spawnlevel.manager.MetadataManager;
 
 public final class StatusScreenListener implements Listener {
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onTownStatusScreen(TownStatusScreenEvent event) {
         customizeStatusScreen(event.getStatusScreen(), event.getTown());
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onNationStatusScreen(NationStatusScreenEvent event) {
         customizeStatusScreen(event.getStatusScreen(), event.getNation());
     }
